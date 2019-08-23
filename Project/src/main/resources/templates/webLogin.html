@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8">
+	<title>天狗登陆</title>
+	<link rel="shortcut icon" href="icon.ico" type="image/x-icon">
+	<link href="style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	 <div class="page-container">	           
+		<div class="wrapper">	
+			<div class="container">
+				<strong><span style="font-weight: bold;font-size: 25px;">账  号  登  录</span></strong> 
+				<form class="form" action="loginPage" method="post">
+					<input type="text" name="name" placeholder="用户名">
+					<input type="password" name="password"  placeholder="密码">
+					<input type="radio" name="identity" id="1" value="管理员"> 管理员
+					<input type="radio" name="identity" id="2" value="售货员"> 售货员
+					<button type="submit" id="login-button">登录</button>
+					<!--判断-->
+					<p style="color: deeppink" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+				</form>
+			</div>
+	   </div>
+	</div>
+</body>
+</html>

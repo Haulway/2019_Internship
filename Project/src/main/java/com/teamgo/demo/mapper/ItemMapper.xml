@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
+
+<!--</beans>-->
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamgo.demo.mapper.ItemMapper">
+    <resultMap id="result" type="com.teamgo.demo.entity.Item">
+        <result property="itemname" column="itemname" />
+        <result property="brand" column="brand"/>
+        <result property="amount" column="amount"/>
+        <result property="unitprice" column="unitprice"/>
+        <result property="location" column="location"/>
+    </resultMap>
+    <select id="ListItem" resultType="com.teamgo.demo.entity.Item">
+        SELECT * FROM item
+    </select>
+    <select id="findItemByName" resultMap="result">
+        SELECT * FROM item WHERE ITEMNAME=#{ITEMNAME}
+    </select>
+    <insert id="insert" parameterType="com.teamgo.demo.entity.Item"
+            keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO ITEM(
+        id,itemname,brand,amount,unitprice,location
+        )
+        VALUES(
+        #{id},
+        #{itemname, jdbcType=VARCHAR},
+        #{brand, jdbcType=VARCHAR},
+        #{amount},
+        #{unitprice},
+        #{location, jdbcType=VARCHAR}
+        )
+    </insert>
+    <delete id="delete" parameterType="int">
+        DELETE FROM item WHERE id=#{id}
+    </delete>
+    <update id="update" parameterType="com.teamgo.demo.entity.Item">
+        UPDATE ITEM SET ITEM.ITEMNAME={name},ITEM.BRAND=#{brand},
+        ITEM.AMOUNT=#{amount},ITEM.UNIT_PRICE=#{unitprice},
+        ITEM.LOCATION=#{location} WHERE ITEM.ID=#{id}
+    </update>
+</mapper>
