@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.WebApplicationInitializer;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.teamgo.demo.controller.controller","com.teamgo.demo.service"})
+@ComponentScan(basePackages = {"com.teamgo.demo.controller","com.teamgo.demo.service","com.teamgo.demo.config"})
 @MapperScan(basePackages = "com.teamgo.demo.mapper")
 public class DemoApplication extends SpringBootServletInitializer implements WebApplicationInitializer {
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
