@@ -6,39 +6,29 @@ import io.swagger.annotations.ApiModelProperty;
 
 @ApiModel("用户实例")
 public class User {
-    @ApiModelProperty("用户姓名")
+    /**
+     * 1.身份识别符：0为管理员，1为售货员，2为顾客
+     * 2.用户名、密码：由用户注册得到
+     * 3.电话、住址、年龄：默认为null
+     * 4.ID：由系统自动生成六位数账号
+     * 5.性别：默认为女
+     */
+    @ApiModelProperty("身份识别符")
+    private Integer identity;
+    @ApiModelProperty("用户名")
     private String Name;
     @ApiModelProperty("用户密码")
     private String Password;
     @ApiModelProperty("电话")
-    private long Tel;
-    @ApiModelProperty("住址")
-    private String Address;
-    @ApiModelProperty("年龄")
-    private int Age;
-    @ApiModelProperty("性别")
-    private boolean Sex;
+    private Integer Tel = null;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "Name='" + Name + '\'' +
-                ", Password='" + Password + '\'' +
-                ", Tel=" + Tel +
-                ", Address='" + Address + '\'' +
-                ", Age=" + Age +
-                ", Sex=" + Sex +
-                ", Identification=" + Identification +
-                ", Search_History='" + Search_History + '\'' +
-                ", Purchase_History='" + Purchase_History + '\'' +
-                ", Cart_History='" + Cart_History + '\'' +
-                ", Like_History='" + Like_History + '\'' +
-                ", Order_History='" + Order_History + '\'' +
-                '}';
+    public Integer getIdentity() {
+        return identity;
     }
 
-    @ApiModelProperty("身份识别符")
-    private int Identification;
+    public void setIdentity(Integer identity) {
+        this.identity = identity;
+    }
 
     public String getName() {
         return Name;
@@ -56,11 +46,11 @@ public class User {
         Password = password;
     }
 
-    public long getTel() {
+    public Integer getTel() {
         return Tel;
     }
 
-    public void setTel(long tel) {
+    public void setTel(Integer tel) {
         Tel = tel;
     }
 
@@ -72,79 +62,62 @@ public class User {
         Address = address;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return Age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         Age = age;
     }
 
-    public boolean isSex() {
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public Boolean isSex() {
         return Sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(Boolean sex) {
         Sex = sex;
     }
 
-    public int getIdentification() {
-        return Identification;
+    @ApiModelProperty("住址")
+    private String Address;
+    @ApiModelProperty("年龄")
+    private Integer Age;
+    @ApiModelProperty("ID")
+    private String ID;
+    @ApiModelProperty("性别")
+    private Boolean Sex;
+
+
+    public User(Integer identity, String name, String password, Integer tel, String address, Integer age, String ID, Boolean sex) {
+        this.identity = identity;
+        Name = name;
+        Password = password;
+        Tel = tel;
+        Address = address;
+        Age = age;
+        this.ID = ID;
+        Sex = sex;
     }
 
-    public void setIdentification(int identification) {
-        Identification = identification;
+    @Override
+    public String toString() {
+        return "User{" +
+                "ID='" + ID + '\'' +
+                ", Name='" + Name + '\'' +
+                ", Password='" + Password + '\'' +
+                ", Tel='" + Tel + '\'' +
+                ", Address='" + Address + '\'' +
+                ", Age=" + Age +
+                ", identity=" + identity +
+                ", Sex=" + Sex +
+                '}';
     }
-
-    public String getSearch_History() {
-        return Search_History;
-    }
-
-    public void setSearch_History(String search_History) {
-        Search_History = search_History;
-    }
-
-    public String getPurchase_History() {
-        return Purchase_History;
-    }
-
-    public void setPurchase_History(String purchase_History) {
-        Purchase_History = purchase_History;
-    }
-
-    public String getCart_History() {
-        return Cart_History;
-    }
-
-    public void setCart_History(String cart_History) {
-        Cart_History = cart_History;
-    }
-
-    public String getLike_History() {
-        return Like_History;
-    }
-
-    public void setLike_History(String like_History) {
-        Like_History = like_History;
-    }
-
-    public String getOrder_History() {
-        return Order_History;
-    }
-
-    public void setOrder_History(String order_History) {
-        Order_History = order_History;
-    }
-
-    @ApiModelProperty("搜索历史")
-    private String Search_History;
-    @ApiModelProperty("搜索历史")
-    private String Purchase_History;
-    @ApiModelProperty("购物车添加记录")
-    private String Cart_History;
-    @ApiModelProperty("喜欢清单")
-    private String Like_History;
-    @ApiModelProperty("订单历史")
-    private String Order_History;
-
 }

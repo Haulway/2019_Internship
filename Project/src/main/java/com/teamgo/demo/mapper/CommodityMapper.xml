@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+<!--       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">-->
+
+<!--</beans>-->
+<!DOCTYPE mapper PUBLIC
+        "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.teamgo.demo.mapper.CommodityMapper">
+    <resultMap id="result" type="com.teamgo.demo.entity.Commodity">
+        <result property="Name" column="name" />
+        <result property="Id" column="ID"/>
+        <result property="Category" column="category"/>
+        <result property="Description" column="description"/>
+        <result property="Price" column="price"/>
+        <result property="Stock" column="stock"/>
+        <result property="Volume_Of_Sell" column="volume_of_sell"/>
+        <result property="Location" column="location"/>
+        <result property="Icon" column="icon"/>
+        <result property="Heat" column="heat"/>
+        <result property="Point" column="point"/>
+    </resultMap>
+    <select id="AllCoomdity" resultType="com.teamgo.demo.entity.Commodity">
+        SELECT * FROM commodity
+    </select>
+    <select id="findItemByName" resultMap="result">
+        SELECT * FROM commodity WHERE name LIKE CONCAT('%',#{name},'%')
+    </select>
+    <insert id="insert" parameterType="com.teamgo.demo.entity.Commodity">
+        INSERT INTO commodity(
+        ID,category,name,description,price,stock,volume_of_sell ,location,icon,heat,point
+        )
+        VALUES(
+        #{Name},
+        #{Id},
+        #{Category},
+        #{Description},
+        #{Price},
+        #{Stock}
+        #{Volume_Of_Sell},
+        #{Location},
+        #{Icon},
+        #{Heat},
+        #{Point}
+        )
+    </insert>
+    <delete id="delete" parameterType="int">
+        DELETE FROM commodity WHERE ID=#{id}
+    </delete>
+    <update id="update" parameterType="com.teamgo.demo.entity.Commodity">
+        UPDATE commodity SET name = #{Name},
+        category=#{Category},
+        description=#{Description},
+        price=#{Price},
+        stock=#{Stock},
+        volume_of_sell=#{Volume_Of_Sell},
+        location=#{Location},
+        icon=#{Icon},
+        heat=#{Heat},
+        point=#{Point}
+        WHERE ID=#{Id}
+    </update>
+    <select id="getstock" resultType="int">
+        SELECT stock FROM commodity WHERE ID=#{id}
+    </select>
+    <select id="getvolumesell" resultType="int">
+        SELECT volume_of_sell FROM commodity WHERE ID=#{id}
+    </select>
+    <update id="buyupdate">
+        UPDATE commodity SET stock=#{ns},
+        volume_of_sell=#{nvs} WHERE ID = #{id}
+    </update>
+    <select id="FindById" resultType="com.teamgo.demo.entity.Commodity" parameterType="String">
+        SELECT * FROM commodity WHERE ID = #{id}
+    </select>
+    <select id="GetPriceById" parameterType="String" resultType="double">
+        SELECT price FROM commodity WHERE ID = #{id}
+    </select>
+</mapper>
