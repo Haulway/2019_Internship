@@ -1,0 +1,189 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <script type="text/javascript" src="/jquery-3.4.1.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>天狗零售</title>
+    <link rel="shortcut icon" href="../picture/icon.ico" type="image/x-icon">
+    <link href="style1.css" rel="stylesheet" type="text/css">
+    <link href="style3.css" rel="stylesheet" type="text/css">
+    <link href="popup.css" rel="stylesheet" type="text/css">
+    <script>
+        // 判断浏览器是否支持
+
+
+        var myStorage=window.localStorage;
+
+
+
+
+
+
+
+        var goodsID = []
+
+        var goodsName =  []
+
+        var counts = []
+
+        var cost = []
+        var a = 0;
+
+
+        function addRow(){
+
+
+
+            var oTable = document.getElementById("cbr");
+            var tBodies = oTable.tBodies;
+            var tbody = tBodies[0];
+            var tr = tbody.insertRow(tbody.rows.length);
+            var td_1 = tr.insertCell(0);
+
+            td_1.innerHTML = " <input class = \"td\" type=\"text\" id='goodsID'   name=\"a\" >";
+            var td_2 = tr.insertCell(1);
+            td_2.innerHTML = "<input class = \"td\"  type=\"text\" id=\"goodsName\"+b name=\"a\" >";
+            var td_3 = tr.insertCell(2);
+            td_3.innerHTML = "<input class = \"td\"  type=\"text\" id=\"counts\"+b name=\"a\"  >";
+            var td_4 = tr.insertCell(3);
+            td_4.innerHTML = "<input class = \"td\"  type=\"text\" id=\"cost\"+b name=\"a\" >";
+            if(a == 0) {
+
+                goodsID[a] = document.getElementById("goodsID").value
+                goodsName[a] = document.getElementById("goodsName").value
+                counts[a] = parseInt(document.getElementById("counts").value)
+                cost[a] = document.getElementById("cost").value
+            }
+            else
+            {
+                document.getElementById("goodsID").id = "useless"
+                document.getElementById("goodsName").id = "useless"
+                document.getElementById("counts").id = "useless"
+                document.getElementById("cost").id = "useless"
+
+                goodsID[a] = document.getElementById("goodsID").value
+                goodsName[a] = document.getElementById("goodsName").value
+                counts[a] = document.getElementById("counts").value
+                cost[a] = document.getElementById("cost").value
+            }
+
+            a = a+1
+
+        }
+
+        function openDialog(){
+
+            if(myStorage.getItem("localUserID") != document.getElementById("localUserID").value)
+            {
+                myStorage.setItem("localUserID",document.getElementById("localUserID").value)
+            }
+             var testMap = {
+                 "goodsID":goodsID,
+                 "goodsName":goodsName,
+                 "counts":counts,
+                 "cost":cost
+
+             }
+
+
+            var data = JSON.stringify(testMap)
+            $.ajax({
+                url:"/cashier",
+                data: data,
+                type:"post",
+                cache:false,
+                dataType:"json",
+                contentType:"application/json",
+                success :function (data) {
+                    document.getElementById("userID").value = myStorage.getItem("localUserID")
+                    document.getElementById("countsOfMoney").value = data["money"]
+                    document.getElementById("time").value = data["time"]
+                    alert("success")
+                },
+                error : function (data) {
+                    alert("请求超时");
+
+                }
+            })
+            document.getElementById('light').style.display='block';
+            document.getElementById('fade').style.display='block'
+
+
+
+        }
+        function closeDialog(){
+            document.getElementById('light').style.display='none';
+            document.getElementById('fade').style.display='none'
+
+        }
+
+
+    </script>
+</head>
+<body>
+<div id="light" class="white_content">
+    <div class="bt">
+        <label>用户ID: <td><input class = "td"type="text" id="userID"  ></td></label>
+        <label>交易金额:<td><input  class = "td" type="text" id="countsOfMoney"   ></td></label>
+        <label>交易时间:<td><input  class = "td" type="text" id="time"  ></td></label>
+    </div>
+    <input class="bb" type="button" onclick = "closeDialog()" value="上 传 交 易">
+</div>
+<div id="fade" class="black_overlay"></div>
+<div class="Top"> <img src="../picture/logo.jpg">
+    <label>天狗商店数据分析</label>
+</div>
+<div class="Bottom">
+    <div class="box">
+        <div class="information">
+            <h2 align="center" > 客 户 基 本 信 息 </h2>
+            <div class="basic"><img src="../picture/head.jpg">
+                <div class="text">
+                    <h1><p th:text="'用户ID：' + ${ID} " >3333</p></h1>
+
+                    <input type = "hidden"  th:value="${ID}" id="localUserID"/>
+                    <h1><p th:text="'历史消费金额：' + ${counts} + '!'">3333</p></h1>
+
+
+                </div>
+                <div class="text">
+                    <h1><p th:text="'信誉状况：' + ${credit} + '!'">3333</p></h1>
+                    <h1><p th:text="'会员等级：' + ${level} + '!'">3333</p></h1>
+                </div>
+            </div>
+            <h2 align="center" > 客 户 商 品 清 单 </h2>
+            <div class="record">
+                <table border="1" id="cbr" cellspacing="1px">
+                    <tr height="50px">
+                        <th class="col1">商 品 I D&nbsp;</th>
+                        <th class="col2">商 品 名&nbsp;</th>
+                        <th class="col3">数 量&nbsp;</th>
+                        <th class="col4">金额&nbsp;</th>
+
+                    </tr>
+                    <tr>
+                    <td>
+                        <input  class = "td" type="text" id="goodsID" name="a" >
+                    </td>
+                    <td><input  class = "td" type="text" id="goodsName" name="a" ></td>
+                    <td><input  class = "td" type="text" id="counts" name="a" ></td>
+                    <td><input  class = "td" type="text" id="cost" name="a" ></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="button">
+                <input type="button" onClick="addRow();" value="添 加 商 品">
+                <input type="button" onclick = "openDialog()" value="结 算">
+            </div>
+        </div>
+        <div class="recommend">
+            <h2>商 品 推 荐</h2>
+            <div class="items"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

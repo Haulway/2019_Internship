@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>天狗零售</title>
+<link rel="shortcut icon" href="../picture/icon.ico" type="image/x-icon">
+<link href="style1(1).css" rel="stylesheet" type="text/css">
+<link href="style2(1).css" rel="stylesheet" type="text/css">
+<link href="camera(1).css" rel="stylesheet" type="text/css">
+<script src="camera.js"></script>
+<script src="axios.min.js"></script>
+</head>
+
+<body>
+<div class="Top">
+  <div class="TT"> <img src="../picture/logo.jpg" class="icon">
+    <label>天狗商店数据分析</label>
+  </div>
+  <img src="../picture/退出.png" class="logout" onClick="location.href='../login/login.html';"> </div>
+<div class="Bottom">
+  <div class="login">
+    <div class="title">
+      <label>顾 客 人 脸 识 别 登 录</label>
+    </div>
+    <hr>
+    <div class="camera">
+      <div class="tips" id="tips"></div>
+      <div class="video-panel">
+        <video id="video" class="video"></video>
+        <!-- 视频上的提示框 -->
+        <svg class="video-over">
+          <polyline points="5,55 5,5 85,5" fill-opacity="0"
+				style="stroke:#FFFFFF;stroke-width:10"/>
+          <polyline points="5,321 5,371 85,371" fill-opacity="0"
+				style="stroke:#FFFFFF;stroke-width:10"/>
+          <polyline points="612,5 692,5 692,55" fill-opacity="0"
+				style="stroke:#FFFFFF;stroke-width:10"/>
+          <polyline points="612,371 692,371 692,321" fill-opacity="0"
+				style="stroke:#FFFFFF;stroke-width:10"/>
+        </svg>
+      </div>
+
+      <canvas id="canvas" style="display:none;"></canvas>
+    </div>
+    <hr>
+    <button type="submit" id="login-button"  onclick="indexObj.uploadImg()">开 始 识 别</button>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>天狗零售</title>
+<link rel="shortcut icon" href="../picture/icon.ico" type="image/x-icon">
+<link href="style1.css" rel="stylesheet" type="text/css">
+<link href="style3.css" rel="stylesheet" type="text/css">
+<link href="popup.css" rel="stylesheet" type="text/css">
+<script>
+function addRow(){
+    var oTable = document.getElementById("cbr");
+    var tBodies = oTable.tBodies;
+    var tbody = tBodies[0];
+    var tr = tbody.insertRow(tbody.rows.length);
+    var td_1 = tr.insertCell(0);
+    td_1.innerHTML = "<div contenteditable='true'></div>";
+    var td_2 = tr.insertCell(1);
+    td_2.innerHTML = "<div contenteditable='true'></div>";
+    var td_3 = tr.insertCell(2);
+    td_3.innerHTML = "<div contenteditable='true'></div>";
+    var td_4 = tr.insertCell(2);
+    td_4.innerHTML = "<div contenteditable='true'></div>";
+}
+    function openDialog(){
+        document.getElementById('light').style.display='block';
+        document.getElementById('fade').style.display='block'
+    }
+    function closeDialog(){
+        document.getElementById('light').style.display='none';
+        document.getElementById('fade').style.display='none'
+    }
+</script>
+</head>
+<body>
+<div id="light" class="white_content">
+  <div class="bt">
+    <label>用户ID:00001</label>
+    <label>交易金额:100.00</label>
+    <label>交易时间:2018.09.01 13:00</label>
+  </div>
+    <input class="bb" type="button" onclick = "closeDialog()" value="上 传 交 易">
+</div>
+<div id="fade" class="black_overlay"></div>
+<div class="Top"> <img src="../picture/logo.jpg">
+  <label>天狗商店数据分析</label>
+</div>
+<div class="Bottom">
+  <div class="box">
+    <div class="information">
+      <h2 align="center" > 客 户 基 本 信 息 </h2>
+      <div class="basic"><img src="../picture/head.jpg">
+        <div class="text">
+          <h1>用户ID:01234</h1>
+          <h1>历史消费金额:20000</h1>
+        </div>
+        <div class="text">
+          <h1>信誉状况:良好</h1>
+          <h1>会员等级：铂金</h1>
+        </div>
+      </div>
+      <h2 align="center" > 客 户 商 品 清 单 </h2>
+      <div class="record">
+        <table border="1" id="cbr" cellspacing="1px">
+          <tr height="50px">
+            <th class="col1">商 品 I D&nbsp;</th>
+            <th class="col2">商 品 名&nbsp;</th>
+            <th class="col3">数 量&nbsp;</th>
+            <th class="col4">金额&nbsp;</th>
+          </tr>
+        </table>
+      </div>
+      <div class="button">
+        <input type="button" onClick="addRow()" value="添 加 商 品">
+        <input type="button" onclick = "openDialog()" value="结 算">
+      </div>
+    </div>
+    <div class="recommend">
+      <h2>商 品 推 荐</h2>
+      <div class="items"></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

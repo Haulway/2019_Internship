@@ -7,16 +7,39 @@
             <table>
                 <tr>
                     <td>用户名：</td>
-                    <td><input type="text" name="tno" ></input></td>
+                    <td><input type="text" name="userName" id ="userName" ></input></td>
                 </tr>
 
                 <tr>
                     <td>密码：</td>
-                    <td><input type="text" name="password" ></input></td>
+                    <td><input type="text" name="password" id = "password" ></input></td>
                 </tr>
                 <tr>
-                    <td><input type = "submit"  value = "登录"></td>
+                    <tb> <button onclick="mySubmit()">login</button></tb>>
                 </tr>
+
+                <script>
+                    function mySubmit()
+                    {
+                        document.getElementById("result").innerHTML = "ID为" + localStorage.ID ;
+                        axios.post("/loginPage",
+                        {
+                            "password": document.getElementById("userName").value,
+                             "ID":storage.getItem("ID")
+
+                        })
+                    .then(function(res)
+                    {
+                        console.log("success")
+
+
+                    })
+                    }
+
+
+
+
+                    </script>
                 <!--判断-->
                 <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 

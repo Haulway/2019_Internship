@@ -5,9 +5,11 @@
     <title>天狗登陆</title>
     <link rel="shortcut icon" href="icon.ico" type="image/x-icon">
     <link href="style.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
+
 <div class="page-container">
     <div class="wrapper">
         <div class="container">
@@ -23,7 +25,9 @@
                 <input type="radio" name="identity" id="2" value="售货员"> 售货员
                 <button type="submit" id="login-button">登录</button>
 
+
                 <!--判断-->
+
                 <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
             </form>
         </div>

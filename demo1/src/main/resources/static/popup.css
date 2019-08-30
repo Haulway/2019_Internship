@@ -1,0 +1,43 @@
+.black_overlay {
+    display: none;
+    position: absolute;
+    top: 0%;
+    bottom: 0%;
+    left: 0%;
+    right: 0%;
+    height: 830px;
+    width: 1890px;
+    background-color: black;
+    z-index: 1;
+    -moz-opacity: 0.8;
+    opacity: .80;
+    filter: alpha(opacity=88);
+}
+.white_content {
+    display: none;
+    position: absolute;
+    width: 20%;
+    height: 50%;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: white;
+    z-index: 2;
+    overflow: auto;
+}
+.bt{
+    margin: 10%;
+    height: 50%;
+    width: 80%;
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.bt label{
+    margin-bottom: 10%;
+}
+.bb{
+    height: 15%;
+    width: 80%;
+    margin: 0 10%;
+}
