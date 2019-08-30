@@ -1,5 +1,6 @@
 package com.teamgo.demo;
 
+import com.teamgo.demo.entity.User;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,10 @@ public class DemoApplication extends SpringBootServletInitializer implements Web
         return application.sources(DemoApplication.class);
     }
     public static void main(String[] args) {
+
         SpringApplication.run(DemoApplication.class, args);
+
     }
+
 
 }

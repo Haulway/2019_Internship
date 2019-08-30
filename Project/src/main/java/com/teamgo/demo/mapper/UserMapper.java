@@ -15,4 +15,6 @@ public interface UserMapper {
     public List<User> ListUser();
     public void register(@Param("user") User user);
     public int updateInfo(User user);
+    //用户注册时，在数据库中添加用户的愿望清单
+    void WishList(@Param("id") String listID);
 }

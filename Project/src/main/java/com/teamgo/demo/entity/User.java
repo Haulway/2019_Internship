@@ -106,7 +106,7 @@ public class User {
         this.ID = ID;
         Sex = sex;
     }
-
+    public User(){}
     @Override
     public String toString() {
         return "User{" +

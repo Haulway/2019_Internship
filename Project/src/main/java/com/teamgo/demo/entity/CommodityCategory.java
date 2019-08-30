@@ -9,7 +9,7 @@ public class CommodityCategory {
     @ApiModelProperty("类目名称")
     private String Name;
     @ApiModelProperty("类目编号")
-    private int ID;
+    private String ID;
     @ApiModelProperty("类目描述")
     private  String Description;
 
@@ -22,7 +22,10 @@ public class CommodityCategory {
                 '}';
     }
 
-    public CommodityCategory(String name, int ID, String description) {
+    public CommodityCategory() {
+    }
+
+    public CommodityCategory(String name, String ID, String description) {
         setName(name);
         setID(ID);
         setDescription(description);
@@ -37,11 +40,11 @@ public class CommodityCategory {
         Name = name;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 

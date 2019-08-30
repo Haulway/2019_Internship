@@ -5,12 +5,10 @@
 <mapper namespace="com.teamgo.demo.mapper.UserMapper">
     <resultMap id="result" type="com.teamgo.demo.entity.User" >
         <result property="identity" column="identity"/>
-        <result property="name" column="name"/>
         <result property="password" column="password"/>
         <result property="telephone" column="telephone"/>
         <result property="name" column="name"/>
         <result property="password" column="password"/>
-        <result property="telephone" column="telephone"/>
         <result property="address" column="address"/>
         <result property="age" column="age"/>
         <result property="ID" column="ID"/>
@@ -24,18 +22,22 @@
     </select>
     <insert id="register" parameterType="com.teamgo.demo.entity.User">
         INSERT INTO USER (
-        identity,name,password
+        identity,name,password,ID
         )
         VALUES(
         #{user.identity},
         #{user.Name, jdbcType=VARCHAR},
-        #{user.Password, jdbcType=VARCHAR}
+        #{user.Password, jdbcType=VARCHAR},
+        #{user.ID}
         )
     </insert>
     <update id="updateInfo" parameterType="com.teamgo.demo.entity.User">
         UPDATE USER SET USER.NAME=#{name},USER.PASSWORD=#{password},
         USER.TEL=#{telephone},USER.ADDRESS=#{address},
         USER.AGE=#{age}, USER.SEX=#{sex} WHERE USER.ID=#{ID}
+    </update>
+    <update id="WishList" parameterType="String">
+        create table ${id}( commodity_ID varchar(32) NOT NULL,volume int NOT NULL);
     </update>
 <!--    <update id="update" parameterType="com.teamgo.entity.Item">-->
 <!--        UPDATE ITEM SET ITEM.ITEM_NAME={name},ITEM.BRAND=#{brand},-->

@@ -8,13 +8,13 @@ import java.util.Date;
 
 @ApiModel("行为实体")
 public class User_Behavior {
-    @ApiModelProperty("行为执行者")
+    @ApiModelProperty(value = "行为执行者")
     private String Actor;
-    @ApiModelProperty("对象商品")
+    @ApiModelProperty(value = "对象商品")
     private String Commodity;
-    @ApiModelProperty("行为")
+    @ApiModelProperty(value = "行为")
     private int Behavior;
-    @ApiModelProperty("时间戳")
+    @ApiModelProperty(value = "时间戳")
     private Timestamp Timestamp;
 
     public User_Behavior(String actor, String commodity, int behavior, java.sql.Timestamp timestamp) {
@@ -23,6 +23,8 @@ public class User_Behavior {
         Behavior = behavior;
         Timestamp = timestamp;
     }
+    public User_Behavior()
+    {}
 
     public String getActor() {
         return Actor;

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 @Controller
-@Api(tags = "用户控制器(web端)")
+@Api(tags = "用户信息控制器(web端)")
 public class User_Controller {
     @Autowired
     UserService user_service;
@@ -27,15 +27,14 @@ public class User_Controller {
     @ApiOperation(value = "登陆操作", notes = "登录操作，判断用户名密码匹配，以及用户身份")
     @RequestMapping(value = "/loginPage", method = {RequestMethod.POST})
     public String login(HttpServletRequest request, Map<String, Object> map) {
+        System.out.println();
         String name = request.getParameter("name");
         String password = request.getParameter("password");
         String type = request.getParameter("identity");
         Integer identity;
-
         if (type.equals("管理员")) identity = 0;
         else identity = 1;
         User user = new User(identity, name, password, null, null, null, null, null);
-        System.out.println(user);
         if (name.equals("") || password.equals("")) {
             map.put("msg", "请输入用户名与密码");
             return "/webLogin";

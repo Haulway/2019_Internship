@@ -3,11 +3,21 @@
         "-//mybatis.org//DTD com.example.Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.teamgo.demo.mapper.BehaviorMapper">
+    <resultMap id="behavior" type="com.teamgo.demo.entity.User_Behavior">
+        <result property="Actor" column="user_id" />
+        <result property="Commodity" column="commodity_id" />
+        <result property="Behavior" column="behavior" />
+        <result property="Timestamp" column="time" />
+    </resultMap>
     <insert id="insert_behavior_record" parameterType="com.teamgo.demo.entity.User_Behavior">
-        INSERT INTO user_behavior_record (user_id,commodity_id,behavior,time)
+        INSERT INTO user_behavior_record (actor,commodity,behavior,timestamp)
         values (#{behavior.Actor},
         #{behavior.Commodity},
         #{behavior.Behavior},
         #{behavior.Timestamp});
     </insert>
+
+    <select id="SearchPurchase" resultType="com.teamgo.demo.entity.User_Behavior">
+        select * from teamgo.user_behavior_record where TO_DAYS(NOW())-TO_DAYS(timestamp) &lt; #{day} and actor=#{user} and behavior = 5;
+    </select>
 </mapper>

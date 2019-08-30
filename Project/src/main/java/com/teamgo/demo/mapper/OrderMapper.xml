@@ -16,4 +16,10 @@
         INSERT INTO ${OrderId} (commodity_ID,volume) VALUES
          (#{commodity_ID},#{volume});
     </insert>
+    <select id="listTableColumn" resultType="String" parameterType="String">
+        select distinct table_name from information_schema.COLUMNS where TABLE_NAME Like CONCAT('%',#{tableName})
+</select>
+    <select id="searchAll" resultType="com.teamgo.demo.entity.OrderItem_DB" parameterType="String">
+        select * from ${orderid}
+    </select>
 </mapper>

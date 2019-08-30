@@ -19,10 +19,10 @@ public class BehaviorService {
     public List<User_Behavior> FindAll(){
         return behaviorMapper.FindAll();
     }
-    //返回对应用户的指定行为记录5为购买
-    public List<User_Behavior> FindUserBuy(String id,int behavior)
+    //返回对应用户的指定时间的购买记录
+    public List<User_Behavior> SearchPurchase(String user,int day)
     {
-        return behaviorMapper.FindUserBuy(id, behavior);
+        return behaviorMapper.SearchPurchase(user, day);
     }
 
 }

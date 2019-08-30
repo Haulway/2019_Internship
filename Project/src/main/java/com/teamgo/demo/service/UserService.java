@@ -13,15 +13,15 @@ public class UserService {
     public UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
     }
-
+    //通过用户名返回密码？
     public String loginReturnPassword(String name){
         return userMapper.loginReturnPassword(name);
     }
-
+    //通过用户名返回身份识别符
     public Integer loginReturnIdentity(String name){
         return userMapper.loginReturnidentity(name);
     }
-
+    //判断用户是否已经存在
     public boolean isExist(String name){
         String passwordFromDB = loginReturnPassword(name);
         if(passwordFromDB == null){
@@ -36,6 +36,7 @@ public class UserService {
             else return true;
         }
     }
+    //再微信端判断用户是否已经存在
     public boolean isExist_web(String name) {
         String passwordFromDB = loginReturnPassword(name);
         if(passwordFromDB == null) {
@@ -43,21 +44,27 @@ public class UserService {
             return false;
         }else return true;
     }
-
-        public boolean IfPasswordCorrect(User user) {
+    //密码是否正确
+    public boolean IfPasswordCorrect(User user) {
         String passwordFromDB = loginReturnPassword(user.getName());
         Integer IdFromDB = loginReturnIdentity(user.getName());
         if((user.getPassword().equals(passwordFromDB))&&(user.getIdentity()==IdFromDB)) return true;
         else return false;
     }
-
+    //注册
     public void register(User user) {
-        String id=String.valueOf(System.currentTimeMillis());
-        User Myuser=new User(2,user.getName(),user.getPassword(),null,null,null,id,null);
+
+        User Myuser=new User(2,user.getName(),user.getPassword(),null,null,null,user.getID(),null);
         userMapper.register(Myuser);
+        userMapper.WishList("Cart"+user.getID());
 //        return true;
     }
     public int updateInfo(User user){
         return userMapper.updateInfo(user);
     }
+
+
+
+
+
 }

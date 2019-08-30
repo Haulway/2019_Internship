@@ -12,5 +12,6 @@ import java.util.List;
 public interface BehaviorMapper {
     void insert_behavior_record(@Param("behavior") User_Behavior behavior);
     List<User_Behavior> FindAll();
-    List<User_Behavior> FindUserBuy(@Param("ID") String id,@Param("Behavior") int behavior);
+
+    List<User_Behavior> SearchPurchase(@Param("user")String userid,@Param("day")int day);
 }

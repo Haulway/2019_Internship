@@ -24,26 +24,11 @@
     <select id="AllCoomdity" resultType="com.teamgo.demo.entity.Commodity">
         SELECT * FROM commodity
     </select>
-    <select id="findItemByName" resultMap="result">
+    <select id="FuzzyQueryByName" resultType="com.teamgo.demo.entity.Commodity">
         SELECT * FROM commodity WHERE name LIKE CONCAT('%',#{name},'%')
     </select>
     <insert id="insert" parameterType="com.teamgo.demo.entity.Commodity">
-        INSERT INTO commodity(
-        ID,category,name,description,price,stock,volume_of_sell ,location,icon,heat,point
-        )
-        VALUES(
-        #{Name},
-        #{Id},
-        #{Category},
-        #{Description},
-        #{Price},
-        #{Stock}
-        #{Volume_Of_Sell},
-        #{Location},
-        #{Icon},
-        #{Heat},
-        #{Point}
-        )
+        INSERT INTO commodity(ID,category,name,description,price,stock,volume_of_sell,location,icon,heat,point)VALUES(#{Id},#{Category},#{Name},#{Description},#{Price},#{Stock},#{Volume_Of_Sell},#{Location},#{Icon},#{Heat},#{Point})
     </insert>
     <delete id="delete" parameterType="int">
         DELETE FROM commodity WHERE ID=#{id}
@@ -77,4 +62,5 @@
     <select id="GetPriceById" parameterType="String" resultType="double">
         SELECT price FROM commodity WHERE ID = #{id}
     </select>
+
 </mapper>

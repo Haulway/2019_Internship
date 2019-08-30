@@ -39,8 +39,14 @@ public class WX_Controller {
         else{
             map1.put("msg","success");
             user.setIdentity(2);
+            String id=String.valueOf(Math.abs(String.valueOf(System.currentTimeMillis()).hashCode()));
+            user.setID(id);
             user_service.register(user);
+            String cart="Cart"+user.getID();
+
         }
         return map1;
     }
+
+
 }

@@ -1,6 +1,7 @@
 package com.teamgo.demo.mapper;
 
 import com.teamgo.demo.entity.Commodity;
+import com.teamgo.demo.entity.CommodityCategory;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Component;
@@ -8,11 +9,12 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Mapper
-@Component(value = "ItemMapper")
+@Component(value = "CommodityMapper")
 public interface CommodityMapper {
-    List<Commodity> FindCommodityByName(String name);
+    List<Commodity> FuzzyQueryByName(String name);
     public List<Commodity> AllCoomdity();
-    public int insert(Commodity commodity);
+    //新增商品
+    public void insert(Commodity commodity);
     //删除id为id的商品
     public int delete(int id);
     //更新商品
@@ -27,4 +29,5 @@ public interface CommodityMapper {
     Commodity FindById(String id);
     //通过id查询价格
     double GetPriceById(String id);
+
 }

@@ -1,6 +1,7 @@
 package com.teamgo.demo.service;
 
 import com.teamgo.demo.entity.Commodity;
+import com.teamgo.demo.entity.CommodityCategory;
 import com.teamgo.demo.entity.Order;
 import com.teamgo.demo.mapper.CommodityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,12 @@ public class CommodityService {
     private CommodityMapper commodityMapper;
 
 
-    public List<Commodity> findByName(String name) {
-        return commodityMapper.FindCommodityByName(name);
+    public List<Commodity> FuzzyQueryByName(String name) {
+        return commodityMapper.FuzzyQueryByName(name);
     }
-    public Commodity insert(Commodity commodity) {
+    public void insert(Commodity commodity) {
         commodityMapper.insert(commodity);
-        return commodity;
+
     }
     public List<Commodity> FindAllCommodity(){
         return	commodityMapper.AllCoomdity();
@@ -40,7 +41,7 @@ public class CommodityService {
     public Commodity FindById(String id)
     {
         Commodity a=commodityMapper.FindById(id);
-        System.out.println(a);
+
         return a;
     }
     //通过id获取价格
@@ -48,4 +49,5 @@ public class CommodityService {
     {
         return commodityMapper.GetPriceById(id);
     }
+
 }

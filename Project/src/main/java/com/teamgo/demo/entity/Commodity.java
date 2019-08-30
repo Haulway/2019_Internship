@@ -4,7 +4,7 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 
-
+@ApiModel("商品实体")
 public class Commodity {
 
     @ApiModelProperty("商品名称")
